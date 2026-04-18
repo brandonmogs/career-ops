@@ -1,0 +1,85 @@
+# Role-config example for tailor-cv.mjs
+#
+# Copy this file and customize per-role. Keep one config per target role:
+#   config/roles/vercel-fde-v0.yml
+#   config/roles/anthropic-evangelist.yml
+#
+# Then generate HTML:
+#   node tailor-cv.mjs --role config/roles/vercel-fde-v0.yml
+#
+# And a PDF:
+#   node generate-pdf.mjs output/aria-vercel-fde-v0.html output/aria-vercel-fde-v0.pdf --format=letter
+#
+# The output filename stem uses `slug:` (or falls back to {profile-name}-{config-filename}).
+
+slug: "candidate-role-slug"
+
+# 2-4 sentence summary. Lead with the angle most relevant to this role.
+# Use <strong>...</strong> for emphasis. HTML-safe.
+summary: >
+  Senior Full Stack Engineer with 10 years of production experience
+  (Next.js, React, Vercel, TypeScript). Led the migration of ripple.com
+  to Next.js 16 + Vercel. Now focused on AI-native developer tools.
+  Ready to <strong>own end-to-end enterprise deployments for v0</strong>.
+
+# 4-8 chip-style pills shown under the summary. Lead with what the JD asks for.
+competencies:
+  - "Forward Deployed Engineering"
+  - "Next.js / React / TypeScript"
+  - "Vercel platform"
+  - "Enterprise launches"
+  - "v0 / Cursor / Claude daily"
+
+# Work experience. Bullets support inline <strong>...</strong> HTML.
+experience:
+  - company: "Company Name"
+    role: "Senior Role Title"
+    period: "Dec 2022 - Present"
+    location: "Remote"
+    bullets:
+      - "Led <strong>major migration</strong> with quantified outcome (e.g. 85% faster, 120% SEO lift)."
+      - "Delivered high-visibility launches with cross-functional stakeholders."
+      - "Owned specific system / tool that readers can verify."
+
+  - company: "Previous Company"
+    role: "Previous Role"
+    period: "Apr 2021 - Dec 2022"
+    bullets:
+      - "Achievement with metric."
+      - "Achievement showing breadth."
+
+# Projects. Keep to 2-4; the first is most important.
+projects:
+  - title: "Flagship project"
+    badge: "Open Source"
+    desc: "One-paragraph description. What it is + measurable outcome."
+    tech: "Tech stack, comma-separated"
+  - title: "Second project"
+    desc: "Paragraph."
+
+# Education entries.
+education:
+  - title: "Bootcamp / Degree title"
+    org: "Institution"
+    year: "2017 - 2018"
+    desc: "Optional one-line description."
+
+# Credentials / distribution / certifications. Used for creator reach, speaking, certs.
+credentials:
+  - title: "600K+ followers across 7 platforms"
+    org: "Instagram, TikTok, YouTube"
+    year: "2024-present"
+  - title: "Paid AI / devtools partnerships"
+    org: "Company A, Company B, Company C"
+    year: "ongoing"
+
+# Technical skills. Categorize deliberately — each category is rendered inline.
+skills:
+  - label: "AI Coding (daily)"
+    items: "v0, Cursor, Claude Code, local AI infrastructure"
+  - label: "Frontend"
+    items: "Next.js (16), React, TypeScript, Tailwind"
+  - label: "Backend"
+    items: "Node.js, Express, REST APIs, GraphQL"
+  - label: "Data"
+    items: "PostgreSQL, MongoDB, Sanity, Contentful"

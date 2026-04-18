@@ -225,7 +225,8 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 | Evaluates a course/cert | `training` |
 | Evaluates portfolio project | `project` |
 | Asks about application status | `tracker` |
-| Fills out application form | `apply` |
+| Fills out application form (read-and-generate) | `apply` |
+| Wants browser to auto-fill a form for them | `submit` |
 | Searches for new offers | `scan` |
 | Processes pending URLs | `pipeline` |
 | Batch processes offers | `batch` |

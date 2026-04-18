@@ -60,6 +60,39 @@ Career-ops is agentic: Claude Code navigates career pages with Playwright, evalu
 
 Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. [Read the full case study](https://santifer.io/career-ops-system).
 
+## 60-Second Start (for @ariacodez viewers)
+
+The fastest path from clone to first auto-applied job:
+
+```bash
+git clone https://github.com/AKCodez/career-ops.git
+cd career-ops
+npm install
+npx playwright install chromium
+npm run doctor     # tells you exactly what's missing
+```
+
+Then open Claude Code and paste this one sentence:
+
+> `onboard me for career-ops — I'm [role you're targeting], based in [city]. My CV is pasted below.\n\n[paste CV]`
+
+Claude fills in `cv.md`, `config/profile.yml`, and `portals.yml` for you. No template-editing, no YAML wrangling.
+
+When you want to apply:
+
+```
+/career-ops submit <job-posting-url>
+```
+
+Claude opens Chrome in a new tab, fills every field (name, email, phone, LinkedIn, GitHub, long-form "Why us?" answers, dropdowns for visa / work-auth / location), pastes a tailored cover letter, and **stops before Submit**. You upload the resume PDF (one click), review the form, and hit Submit yourself. You stay in the loop for every decision.
+
+**What you need once:**
+- [Claude Code](https://claude.com/download) (desktop or CLI)
+- [Claude in Chrome extension](https://claude.com/download) (for the `submit` mode only)
+- Your CV in any format (markdown, PDF, LinkedIn export — Claude converts it)
+
+**Everything else** — tailored per-role CVs, application answers, tracker updates, portal scanning — is handled for you.
+
 ## Features
 
 | Feature | Description |
@@ -121,7 +154,8 @@ Career-ops is a single slash command with multiple modes:
 /career-ops pdf            → Generate ATS-optimized CV
 /career-ops batch          → Batch evaluate multiple offers
 /career-ops tracker        → View application status
-/career-ops apply          → Fill application forms with AI
+/career-ops apply          → Live answer generator (you copy-paste into the form)
+/career-ops submit <url>   → Browser-automated form fill (pauses before Submit)
 /career-ops pipeline       → Process pending URLs
 /career-ops contacto       → LinkedIn outreach message
 /career-ops deep           → Deep company research

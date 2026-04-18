@@ -1,4 +1,7 @@
 # Personal data (user fills these)
+cv.md
+*resume*.pdf
+*-resume*.pdf
 data/applications.md
 data/pipeline.md
 data/scan-history.tsv
@@ -29,8 +32,12 @@ bun.lock
 
 # OS
 .DS_Store
+desktop.ini
 *.mov
 *.mp4
+
+# Temp scratch
+scripts-tmp/
 
 # Claude Code local
 .claude/settings.local.json
