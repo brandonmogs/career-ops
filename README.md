@@ -106,6 +106,9 @@ Claude opens Chrome in a new tab, fills every field (name, email, phone, LinkedI
 | **Batch Processing** | Parallel evaluation with `claude -p` workers |
 | **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
+| **Browser Auto-Apply** | `/career-ops submit <url>` — Claude in Chrome fills every form field (basic info, dropdowns, long-form answers, cover letter) and stops before Submit. You upload the PDF and click. |
+| **Zero-Token JD Fetch** | `fetch-jd.mjs` hits Ashby / Greenhouse / Lever APIs directly. No WebFetch cost, no "Ashby only returns title" problem. |
+| **Per-Role Tailored CVs** | `tailor-cv.mjs` takes a role-config YAML and generates an ATS-clean HTML → PDF with role-specific summary, proof points, and competencies |
 | **Pipeline Integrity** | Automated merge, dedup, status normalization, health checks |
 
 ## Quick Start
@@ -172,6 +175,10 @@ You paste a job URL or description
         │
         ▼
 ┌──────────────────┐
+│  fetch-jd.mjs    │  Zero-LLM scrape via Ashby / Greenhouse / Lever APIs
+└────────┬─────────┘
+         │
+┌────────▼─────────┐
 │  Archetype       │  Classifies: LLMOps / Agentic / PM / SA / FDE / Transformation
 │  Detection       │
 └────────┬─────────┘
@@ -181,10 +188,17 @@ You paste a job URL or description
 │  (reads cv.md)   │
 └────────┬─────────┘
          │
-    ┌────┼────┐
-    ▼    ▼    ▼
- Report  PDF  Tracker
-  .md   .pdf   .tsv
+    ┌────┼────┬───────────────┐
+    ▼    ▼    ▼               ▼
+ Report  PDF  Tracker      tailor-cv.mjs
+  .md   .pdf   .tsv        (per-role HTML)
+                               │
+                               ▼
+                      ┌──────────────────┐
+                      │ /career-ops      │  Browser-automated form fill.
+                      │   submit <url>   │  Pauses before Submit — you
+                      │                  │  upload the PDF, click Submit.
+                      └──────────────────┘
 ```
 
 ## Pre-configured Portals
@@ -223,15 +237,20 @@ career-ops/
 ├── article-digest.md            # Your proof points (optional)
 ├── config/
 │   └── profile.example.yml      # Template for your profile
-├── modes/                       # 14 skill modes
+├── modes/                       # 15 skill modes
 │   ├── _shared.md               # Shared context (customize this)
 │   ├── oferta.md                # Single evaluation
 │   ├── pdf.md                   # PDF generation
 │   ├── scan.md                  # Portal scanner
 │   ├── batch.md                 # Batch processing
+│   ├── apply.md                 # Live answer generator (copy/paste)
+│   ├── submit.md                # Browser-automated form fill (NEW)
 │   └── ...
+├── fetch-jd.mjs                 # Zero-token JD fetcher (Ashby/GH/Lever APIs)
+├── tailor-cv.mjs                # Role-config YAML → tailored HTML CV
 ├── templates/
 │   ├── cv-template.html         # ATS-optimized CV template
+│   ├── role-config.example.yml  # Per-role tailoring config
 │   ├── portals.example.yml      # Scanner config template
 │   └── states.yml               # Canonical statuses
 ├── batch/
